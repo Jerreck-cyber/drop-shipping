@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YourStoreName | Top Dropshipping Products</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">YourStoreName</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Discover the Best Products to Enhance Your Lifestyle</h1>
+      <p>Handpicked selections to meet your needs and elevate your everyday experiences.</p>
+      <a href="shop.html" class="btn-primary">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <div class="feature">
+        <img src="assets/eco-friendly.svg" alt="Eco-Friendly">
+        <h3>Eco-Friendly</h3>
+        <p>Sustainable products that help reduce your carbon footprint.</p>
+      </div>
+      <div class="feature">
+        <img src="assets/health-wellness.svg" alt="Health & Wellness">
+        <h3>Health & Wellness</h3>
+        <p>Enhance your well-being with our top picks.</p>
+      </div>
+      <div class="feature">
+        <img src="assets/tech-gadgets.svg" alt="Tech Gadgets">
+        <h3>Tech Gadgets</h3>
+        <p>Latest technology to simplify your life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Products Section -->
+  <section id="products" class="products-section">
+    <div class="container">
+      <h2>Top Trending Products</h2>
+      <div class="products-grid" id="products-grid">
+        <!-- Products dynamically fetched and inserted here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 YourStoreName. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="return-policy.html">Return Policy</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Fetch trending products dynamically from the backend API
+      async function fetchProducts() {
+        const response = await fetch('http://localhost:5000/products?sortBy=clicks&limit=4');
+        const products = await response.json();
+
+        const productsGrid = document.querySelector('#products-grid');
+        productsGrid.innerHTML = '';  // Clear the grid
+
+        products.forEach(product => {
+          const productItem = document.createElement('div');
+          productItem.classList.add('product-item');
+
+          productItem.innerHTML = `
+            <a href="#">
+              <img src="${product.imageUrl}" alt="${product.name}">
+              <h3>${product.name}</h3>
+              <p>$${product.price.toFixed(2)}</p>
+            </a>
+          `;
+
+          productsGrid.appendChild(productItem);
+        });
+      }
+
+      fetchProducts();
+    });
+  </script>
+</body>
+</html>

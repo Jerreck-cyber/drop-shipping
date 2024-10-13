@@ -1,0 +1,34 @@
+
+### Instructions for Setting Up Smart Dropshipping Website
+
+1. **Install Node.js and MongoDB** if not already installed.
+   - Download Node.js from: https://nodejs.org/
+   - Install MongoDB: https://www.mongodb.com/try/download/community
+
+2. **Backend Setup**:
+   - Navigate to the `backend` folder: `cd smart-dropshipping/backend`.
+   - Run `npm install express mongoose cors` to install dependencies.
+   - Run `node server.js` to start the server on `http://localhost:5000`.
+
+3. **Frontend Setup**:
+   - The HTML files are located in the `frontend` folder.
+   - Open `shop.html` in your browser.
+
+4. **MongoDB Setup**:
+   - Make sure MongoDB is running (`mongod`).
+   - Create a database named `dropshipping`.
+   - Insert product data into the `products` collection:
+     ```
+     use dropshipping
+     db.products.insertMany([
+       { "name": "Eco-Friendly Water Bottle", "price": 19.99, "imageUrl": "https://via.placeholder.com/300x300", "clicks": 0, "purchases": 0 },
+       { "name": "Biodegradable Phone Case", "price": 24.99, "imageUrl": "https://via.placeholder.com/300x300", "clicks": 0, "purchases": 0 },
+       { "name": "Smart Fitness Tracker", "price": 49.99, "imageUrl": "https://via.placeholder.com/300x300", "clicks": 0, "purchases": 0 }
+     ])
+     ```
+
+5. **Track Clicks and Purchases**:
+   - On the shop page, clicking a product will track a click, and clicking "Buy Now" will track a purchase.
+   - The most clicked/purchased products will be dynamically displayed.
+
+Enjoy your smart dropshipping website!
